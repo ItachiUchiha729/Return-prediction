@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large data — keep out of git (too big for GitHub)
+raw_data/
+feature_data/
+
+# IDE
+.vscode/
+.idea/

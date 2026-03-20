@@ -1,0 +1,547 @@
+{
+  "settings": {
+    "intraday": {
+      "start_time": "09:45",
+      "close_time": "15:30"
+    }
+  },
+  "intraday_features": [
+    {
+      "name": "intraday_momentum",
+      "description": "Sum of ResidReturn over a configurable time window. Grid search: start_time × end_time.",
+      "sign": -1,
+      "enabled": true,
+      "type": "intraday_sum",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "10:00",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "intraday_reversal",
+      "description": "Late minus early intraday ResidReturn. Grid search: split point between early/late windows.",
+      "sign": -1,
+      "enabled": true,
+      "type": "intraday_diff_of_sums",
+      "input": "ResidReturn",
+      "params": {
+        "first_window": {
+          "start_time": "13:30",
+          "end_time": "15:30"
+        },
+        "second_window": {
+          "start_time": "09:45",
+          "end_time": "13:29"
+        }
+      },
+      "mad_filter": {
+        "rule": "outside_both",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "resid_vol",
+      "description": "Intraday volatility (std) of ResidReturn. Grid search: start_time × end_time.",
+      "sign": -1,
+      "enabled": true,
+      "type": "intraday_volatility",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "late_day_trend",
+      "description": "Late-day momentum minus its K-day rolling mean. Grid search: lookback_days × start_time.",
+      "sign": -1,
+      "enabled": true,
+      "type": "late_day_trend_deviation",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "15:00",
+        "end_time": "15:30",
+        "lookback_days": 10
+      }
+    },
+    {
+      "name": "intraday_skewness",
+      "description": "Skewness of intraday ResidReturn. Grid search: start_time × end_time.",
+      "enabled": true,
+      "type": "intraday_skewness",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "volume_weighted_pressure",
+      "description": "Volume-weighted intraday ResidReturn. Grid search: start_time × end_time.",
+      "sign": -1,
+      "enabled": false,
+      "type": "volume_weighted_momentum",
+      "inputs": {
+        "returns": "ResidReturn",
+        "volume": "Volume"
+      },
+      "params": {
+        "start_time": "10:00",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "outside_both",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "early_late_volume_mix",
+      "description": "Late vs early volume distribution. Grid search: split_time.",
+      "enabled": true,
+      "type": "early_late_volume_mix",
+      "inputs": {
+        "cum_volume": "CumVolume"
+      },
+      "params": {
+        "start_time": "09:45",
+        "split_time": "13:00",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "return_volume_corr",
+      "description": "Correlation between ResidReturn and Volume. Grid search: time window.",
+      "enabled": true,
+      "type": "intraday_corr",
+      "inputs": {
+        "x": "ResidReturn",
+        "y": "Volume"
+      },
+      "params": {
+        "start_time": "11:00",
+        "end_time": "15:00"
+      },
+      "mad_filter": {
+        "rule": "right_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "gap_continuation",
+      "description": "Opening gap vs intraday continuation. Grid search: close_time × open_time.",
+      "sign": -1,
+      "enabled": false,
+      "type": "gap_vs_continuation",
+      "input": "CumReturnResid",
+      "params": {
+        "open_time": "09:45",
+        "close_time": "15:30",
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "name": "lag1_autocorr",
+      "description": "Lag-1 autocorrelation of ResidReturn. Grid search: start_time × end_time.",
+      "sign": -1,
+      "enabled": true,
+      "type": "intraday_lag1_autocorr",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "10:00",
+        "end_time": "15:30"
+      },
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "closing_auction_participation_ratio",
+      "description": "(CumVol_16:00 - CumVol_15:30) / CumVol_15:30.",
+      "enabled": true,
+      "type": "closing_auction_participation",
+      "input": "CumVolume",
+      "params": {
+        "time_1530": "15:30",
+        "time_1600": "16:00"
+      }
+    },
+    {
+      "name": "amihud_illiquidity",
+      "description": "Mean(|ResidReturn| / Volume). Amihud illiquidity ratio. Grid search: time window.",
+      "enabled": false,
+      "type": "amihud_illiquidity",
+      "inputs": {
+        "returns": "ResidReturn",
+        "volume": "Volume"
+      },
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      }
+    },
+    {
+      "name": "intraday_range",
+      "description": "Max - min of CumReturnResid within time window. Intraday volatility proxy.",
+      "sign": -1,
+      "enabled": false,
+      "type": "intraday_range",
+      "input": "CumReturnResid",
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      }
+    },
+    {
+      "name": "roll_measure",
+      "description": "2*sqrt(-cov(r_t,r_{t-1})). Roll illiquidity measure. Grid search: time window.",
+      "sign": -1,
+      "enabled": false,
+      "type": "roll_measure",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      }
+    },
+    {
+      "name": "intraday_kurtosis",
+      "description": "Excess kurtosis of intraday ResidReturn. Grid search: start_time × end_time.",
+      "enabled": true,
+      "type": "intraday_kurtosis",
+      "input": "ResidReturn",
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      },
+      "sign": -1,
+      "mad_filter": {
+        "rule": "right_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "intraday_vwap_deviation",
+      "description": "(Close - VWAP) / VWAP. Intraday VWAP deviation. Grid search: time window.",
+      "enabled": true,
+      "type": "intraday_vwap_deviation",
+      "input": "CumReturnResid",
+      "inputs": {
+        "volume": "Volume"
+      },
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      },
+      "sign": -1,
+      "mad_filter": {
+        "rule": "left_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "intraday_volume_concentration",
+      "description": "Herfindahl index of intraday volume distribution. Grid search: time window.",
+      "enabled": true,
+      "type": "intraday_volume_concentration",
+      "inputs": {
+        "volume": "Volume"
+      },
+      "params": {
+        "start_time": "09:45",
+        "end_time": "15:30"
+      },
+      "sign": -1
+    }
+  ],
+  "daily_features": [
+    {
+      "name": "volume_surge_ratio",
+      "description": "CumVol_15:30 * CloseAdj_T-1 / MDV_63_T-1.",
+      "enabled": false,
+      "type": "volume_surge_ratio",
+      "params": {}
+    },
+    {
+      "name": "realized_vs_implied_vol_ratio",
+      "description": "(HighAdj - LowAdj) / (CloseAdj * EST_VOL * sqrt(1/252)), uses T-1.",
+      "enabled": false,
+      "type": "realized_vs_implied_vol",
+      "params": {}
+    },
+    {
+      "name": "adjusted_overnight_gap_return",
+      "description": "Open_T-1 / Close_T-2 - 1 (T-1 overnight gap).",
+      "sign": -1,
+      "enabled": false,
+      "type": "overnight_gap_return",
+      "params": {}
+    },
+    {
+      "name": "vol_scaled_momentum",
+      "description": "R^(K) / EST_VOL — momentum scaled by implied volatility. Grid search: lookback K.",
+      "enabled": false,
+      "type": "vol_scaled_momentum",
+      "params": {
+        "K": 5
+      }
+    },
+    {
+      "name": "mean_reversion_ma",
+      "description": "CloseAdj / SMA(CloseAdj, K) - 1. Classic mean-reversion signal. Grid search: lookback K.",
+      "sign": -1,
+      "enabled": true,
+      "type": "mean_reversion_ma",
+      "params": {
+        "K": 120
+      },
+      "mad_filter": {
+        "rule": "outside_both",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "short_term_reversal",
+      "description": "Close-to-close return over lag days. Classic short-term reversal. Grid search: lag.",
+      "sign": -1,
+      "enabled": true,
+      "type": "short_term_reversal",
+      "params": {
+        "lag": 1
+      },
+      "mad_filter": {
+        "rule": "center",
+        "mad_scale": 3,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "bollinger_band",
+      "description": "(CloseAdj - SMA(K)) / rolling_std(K). Bollinger band z-score. Grid search: lookback K.",
+      "sign": -1,
+      "enabled": true,
+      "type": "bollinger_band_position",
+      "params": {
+        "K": 5
+      }
+    },
+    {
+      "name": "raw_momentum",
+      "description": "Past K-day cumulative return (no vol scaling). Jegadeesh-Titman momentum.",
+      "enabled": true,
+      "type": "raw_momentum",
+      "params": {
+        "K": 5
+      },
+      "mad_filter": {
+        "rule": "outside_both",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "turnover",
+      "description": "VolumeAdj / MDV_63. Classic turnover/liquidity factor.",
+      "sign": -1,
+      "enabled": false,
+      "type": "turnover",
+      "params": {}
+    },
+    {
+      "name": "week52_high",
+      "description": "(Close - min_K) / (max_K - min_K). Distance from 52-week range.",
+      "sign": -1,
+      "enabled": false,
+      "type": "week52_high",
+      "params": {
+        "K": 30
+      }
+    },
+    {
+      "name": "max_daily_return",
+      "description": "Max of past K daily returns. Bali et al. lottery effect.",
+      "sign": -1,
+      "enabled": false,
+      "type": "max_daily_return",
+      "params": {
+        "K": 20
+      }
+    },
+    {
+      "name": "high_low_range",
+      "description": "(High - Low) / Close. Daily volatility proxy.",
+      "sign": -1,
+      "enabled": false,
+      "type": "high_low_range",
+      "params": {}
+    },
+    {
+      "name": "volatility_ratio",
+      "description": "Short-term vol / long-term vol. Grid search: K_short × K_long.",
+      "enabled": false,
+      "type": "volatility_ratio",
+      "params": {
+        "K_short": 5,
+        "K_long": 21
+      }
+    },
+    {
+      "name": "volume_trend",
+      "description": "Volume / MA(Volume, K) - 1. Grid search: lookback K.",
+      "enabled": false,
+      "type": "volume_trend",
+      "params": {
+        "K": 20
+      }
+    },
+    {
+      "name": "open_to_close_return",
+      "description": "(Close - Open) / Open. Intraday open-to-close return.",
+      "enabled": true,
+      "type": "open_to_close_return",
+      "params": {},
+      "sign": -1,
+      "mad_filter": {
+        "rule": "right_tail",
+        "mad_scale": 4,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "down_volume_ratio",
+      "description": "Volume on down days / total volume over K days. Grid search: K.",
+      "enabled": false,
+      "type": "down_volume_ratio",
+      "params": {
+        "K": 5
+      }
+    },
+    {
+      "name": "close_position_daily_range",
+      "description": "(2*Close - High - Low) / (High - Low). KSFT factor.",
+      "enabled": true,
+      "type": "close_position_daily_range",
+      "params": {},
+      "sign": -1,
+      "mad_filter": {
+        "rule": "right_tail",
+        "mad_scale": 2,
+        "update_freq_days": 21,
+        "warmup_days": 21
+      }
+    },
+    {
+      "name": "upper_shadow_ratio",
+      "description": "(High - max(O,C)) / (High - Low). Upper shadow ratio.",
+      "enabled": false,
+      "type": "upper_shadow_ratio",
+      "params": {}
+    },
+    {
+      "name": "up_to_down_volume_ratio",
+      "description": "Volume on up days / volume on down days over K days. Grid search: K.",
+      "enabled": false,
+      "type": "up_to_down_volume_ratio",
+      "params": {
+        "K": 20
+      }
+    },
+    {
+      "name": "volume_autocorrelation",
+      "description": "Lag-1 autocorrelation of daily volume. Grid search: K.",
+      "enabled": false,
+      "type": "volume_autocorrelation",
+      "params": {
+        "K": 10
+      },
+      "sign": -1
+    },
+    {
+      "name": "free_float_adjusted_turnover",
+      "description": "Turnover / (FREE_FLOAT_PERCENTAGE/100).",
+      "sign": -1,
+      "enabled": false,
+      "type": "free_float_adjusted_turnover",
+      "params": {}
+    },
+    {
+      "name": "body_to_range_ratio",
+      "description": "|Close - Open| / (High - Low). Body-to-range ratio.",
+      "enabled": false,
+      "type": "body_to_range_ratio",
+      "params": {}
+    },
+    {
+      "name": "daily_price_volume_corr",
+      "description": "Correlation(Close, Volume) over K days. Alpha #6 style. Grid search: K.",
+      "sign": -1,
+      "enabled": false,
+      "type": "daily_price_volume_corr",
+      "params": {
+        "K": 5
+      }
+    },
+    {
+      "name": "rsv_short",
+      "description": "(Close - min_Low_K) / (max_High_K - min_Low_K). Stochastic. Grid search: K.",
+      "sign": -1,
+      "enabled": false,
+      "type": "rsv",
+      "params": {
+        "K": 10
+      }
+    },
+    {
+      "name": "rsv_long",
+      "description": "(Close - min_Low_K) / (max_High_K - min_Low_K). Stochastic. Grid search: K.",
+      "sign": -1,
+      "enabled": false,
+      "type": "rsv",
+      "params": {
+        "K": 120
+      }
+    }
+  ]
+}
