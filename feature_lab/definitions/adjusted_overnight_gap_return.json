@@ -1,0 +1,11 @@
+{
+  "name": "adjusted_overnight_gap_return",
+  "description": "Open_T-1 / Close_T-(1+lag) - 1. Grid search: lag (1=Close_T-2, 2=Close_T-3).",
+  "category": "daily",
+  "type": "overnight_gap_return",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "lag": [1, 2, 3, 5]
+  }
+}

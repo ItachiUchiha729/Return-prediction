@@ -1,0 +1,15 @@
+{
+  "name": "late_day_trend",
+  "description": "Late-day momentum minus its K-day rolling mean. Grid search: lookback_days × start_time.",
+  "category": "intraday",
+  "type": "late_day_trend_deviation",
+  "input": "ResidReturn",
+  "sign": -1,
+  "base_params": {
+    "end_time": "15:30"
+  },
+  "param_grid": {
+    "lookback_days": [3, 5, 10, 20, 40, 60, 120],
+    "start_time": ["13:30", "14:00", "14:30", "15:00"]
+  }
+}

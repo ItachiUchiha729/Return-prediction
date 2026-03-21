@@ -1,0 +1,9 @@
+{
+  "name": "free_float_adjusted_turnover",
+  "description": "Turnover / (FREE_FLOAT_PERCENTAGE/100). No tunable params.",
+  "category": "daily",
+  "type": "free_float_adjusted_turnover",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "intraday_reversal",
+  "description": "Late minus early intraday ResidReturn. Grid search: split point between early/late windows.",
+  "category": "intraday",
+  "type": "intraday_diff_of_sums",
+  "input": "ResidReturn",
+  "sign": -1,
+  "base_params": {
+    "first_window": {"start_time": "13:00", "end_time": "15:30"},
+    "second_window": {"start_time": "09:45", "end_time": "12:59"}
+  },
+  "param_combos": [
+    {"first_window.start_time": "11:00", "second_window.end_time": "10:59"},
+    {"first_window.start_time": "11:30", "second_window.end_time": "11:29"},
+    {"first_window.start_time": "12:00", "second_window.end_time": "11:59"},
+    {"first_window.start_time": "12:30", "second_window.end_time": "12:29"},
+    {"first_window.start_time": "13:00", "second_window.end_time": "12:59"},
+    {"first_window.start_time": "13:30", "second_window.end_time": "13:29"},
+    {"first_window.start_time": "14:00", "second_window.end_time": "13:59"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "roll_measure",
+  "description": "2*sqrt(-cov(r_t,r_{t-1})). Roll illiquidity measure. Grid search: start_time × end_time.",
+  "category": "intraday",
+  "type": "roll_measure",
+  "input": "ResidReturn",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:00", "14:30", "15:00", "15:30"]
+  }
+}

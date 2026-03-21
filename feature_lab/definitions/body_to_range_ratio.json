@@ -1,0 +1,8 @@
+{
+  "name": "body_to_range_ratio",
+  "description": "|Close - Open| / (High - Low). Body-to-range ratio. No tunable params.",
+  "category": "daily",
+  "type": "body_to_range_ratio",
+  "base_params": {},
+  "param_grid": {}
+}

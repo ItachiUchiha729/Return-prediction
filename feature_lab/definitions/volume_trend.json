@@ -1,0 +1,10 @@
+{
+  "name": "volume_trend",
+  "description": "Volume / MA(Volume, K) - 1. Grid search: lookback K.",
+  "category": "daily",
+  "type": "volume_trend",
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 20, 40, 60, 120]
+  }
+}

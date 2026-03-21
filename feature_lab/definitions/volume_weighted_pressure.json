@@ -1,0 +1,16 @@
+{
+  "name": "volume_weighted_pressure",
+  "description": "Volume-weighted intraday ResidReturn. Grid search: start_time × end_time.",
+  "category": "intraday",
+  "type": "volume_weighted_momentum",
+  "inputs": {
+    "returns": "ResidReturn",
+    "volume": "Volume"
+  },
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:00", "14:30", "15:00", "15:30"]
+  }
+}

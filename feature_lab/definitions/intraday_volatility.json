@@ -1,0 +1,13 @@
+{
+  "name": "resid_vol",
+  "description": "Intraday volatility (std) of ResidReturn. Grid search: start_time × end_time.",
+  "category": "intraday",
+  "type": "intraday_volatility",
+  "input": "ResidReturn",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:00", "14:30", "15:00", "15:30"]
+  }
+}

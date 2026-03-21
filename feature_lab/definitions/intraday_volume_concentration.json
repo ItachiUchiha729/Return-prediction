@@ -1,0 +1,14 @@
+{
+  "name": "intraday_volume_concentration",
+  "description": "Herfindahl index of intraday volume distribution. Grid search: time window.",
+  "category": "intraday",
+  "type": "intraday_volume_concentration",
+  "inputs": {
+    "volume": "Volume"
+  },
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:30", "15:00", "15:15", "15:30"]
+  }
+}

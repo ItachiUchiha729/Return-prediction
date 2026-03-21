@@ -1,0 +1,11 @@
+{
+  "name": "max_daily_return",
+  "description": "Max of past K daily returns. Bali et al. lottery effect. Grid search: lookback K.",
+  "category": "daily",
+  "type": "max_daily_return",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 20, 40, 60, 120]
+  }
+}

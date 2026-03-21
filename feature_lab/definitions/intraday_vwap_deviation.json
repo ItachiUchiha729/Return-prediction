@@ -1,0 +1,15 @@
+{
+  "name": "intraday_vwap_deviation",
+  "description": "(Close - VWAP) / VWAP. Intraday VWAP deviation. Grid search: time window.",
+  "category": "intraday",
+  "type": "intraday_vwap_deviation",
+  "input": "CumReturnResid",
+  "inputs": {
+    "volume": "Volume"
+  },
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:30", "15:00", "15:15", "15:30"]
+  }
+}

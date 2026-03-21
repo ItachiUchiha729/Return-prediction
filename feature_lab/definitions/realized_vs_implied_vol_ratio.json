@@ -1,0 +1,10 @@
+{
+  "name": "realized_vs_implied_vol_ratio",
+  "description": "(HighAdj - LowAdj) / (CloseAdj * EST_VOL * sqrt(1/ann_days)). Grid search: annualization_days.",
+  "category": "daily",
+  "type": "realized_vs_implied_vol",
+  "base_params": {},
+  "param_grid": {
+    "annualization_days": [252, 365]
+  }
+}

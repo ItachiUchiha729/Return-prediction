@@ -1,0 +1,11 @@
+{
+  "name": "daily_price_volume_corr",
+  "description": "Correlation(Close, Volume) over K days. Alpha #6 style. Grid search: K.",
+  "category": "daily",
+  "type": "daily_price_volume_corr",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+  }
+}

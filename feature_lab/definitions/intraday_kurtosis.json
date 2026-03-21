@@ -1,0 +1,12 @@
+{
+  "name": "intraday_kurtosis",
+  "description": "Excess kurtosis of intraday ResidReturn. Grid search: start_time × end_time.",
+  "category": "intraday",
+  "type": "intraday_kurtosis",
+  "input": "ResidReturn",
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00", "12:00"],
+    "end_time": ["14:00", "14:30", "15:00", "15:15", "15:30"]
+  }
+}

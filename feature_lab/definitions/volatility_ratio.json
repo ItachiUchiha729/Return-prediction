@@ -1,0 +1,11 @@
+{
+  "name": "volatility_ratio",
+  "description": "Short-term vol / long-term vol. Grid search: K_short × K_long.",
+  "category": "daily",
+  "type": "volatility_ratio",
+  "base_params": {},
+  "param_grid": {
+    "K_short": [3, 5, 10, 15, 20, 25, 30],
+    "K_long": [21, 42, 63, 126, 189, 252]
+  }
+}

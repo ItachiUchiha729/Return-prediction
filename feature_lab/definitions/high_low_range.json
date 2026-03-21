@@ -1,0 +1,9 @@
+{
+  "name": "high_low_range",
+  "description": "(High - Low) / Close. Daily volatility proxy. No tunable params.",
+  "category": "daily",
+  "type": "high_low_range",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {}
+}

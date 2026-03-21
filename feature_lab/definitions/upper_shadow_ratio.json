@@ -1,0 +1,8 @@
+{
+  "name": "upper_shadow_ratio",
+  "description": "(High - max(O,C)) / (High - Low). Upper shadow ratio. No tunable params.",
+  "category": "daily",
+  "type": "upper_shadow_ratio",
+  "base_params": {},
+  "param_grid": {}
+}

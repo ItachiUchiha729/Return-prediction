@@ -1,0 +1,9 @@
+{
+  "name": "turnover",
+  "description": "VolumeAdj / MDV_63. Classic turnover/liquidity factor. No tunable params.",
+  "category": "daily",
+  "type": "turnover",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {}
+}

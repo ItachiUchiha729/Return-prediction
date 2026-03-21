@@ -1,0 +1,10 @@
+{
+  "name": "down_volume_ratio",
+  "description": "Volume on down days / total volume over K days. Grid search: K.",
+  "category": "daily",
+  "type": "down_volume_ratio",
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 20, 40, 60, 120]
+  }
+}

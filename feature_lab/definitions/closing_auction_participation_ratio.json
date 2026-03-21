@@ -1,0 +1,12 @@
+{
+  "name": "closing_auction_participation_ratio",
+  "description": "(CumVol_16:00 - CumVol_15:30) / CumVol_15:30. Grid search: reference time × auction end time.",
+  "category": "intraday",
+  "type": "closing_auction_participation",
+  "input": "CumVolume",
+  "base_params": {},
+  "param_grid": {
+    "time_1530": ["15:00", "15:15", "15:30"],
+    "time_1600": ["15:45", "16:00"]
+  }
+}

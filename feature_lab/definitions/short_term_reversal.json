@@ -1,0 +1,11 @@
+{
+  "name": "short_term_reversal",
+  "description": "Close-to-close return over lag days. Classic short-term reversal. Grid search: lag.",
+  "category": "daily",
+  "type": "short_term_reversal",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "lag": [1, 2, 3, 5, 10, 20, 40, 60, 120]
+  }
+}

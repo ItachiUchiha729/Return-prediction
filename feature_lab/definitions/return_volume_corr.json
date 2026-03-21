@@ -1,0 +1,15 @@
+{
+  "name": "return_volume_corr",
+  "description": "Correlation between ResidReturn and Volume. Grid search: time window.",
+  "category": "intraday",
+  "type": "intraday_corr",
+  "inputs": {
+    "x": "ResidReturn",
+    "y": "Volume"
+  },
+  "base_params": {},
+  "param_grid": {
+    "start_time": ["09:45", "10:00", "10:30", "11:00"],
+    "end_time": ["14:00", "14:30", "15:00", "15:30"]
+  }
+}

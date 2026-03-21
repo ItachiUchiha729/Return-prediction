@@ -1,0 +1,11 @@
+{
+  "name": "rsv",
+  "description": "(Close - min_Low_K) / (max_High_K - min_Low_K). Stochastic. Grid search: K.",
+  "category": "daily",
+  "type": "rsv",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 9, 14, 20, 30, 60, 80, 100, 120]
+  }
+}

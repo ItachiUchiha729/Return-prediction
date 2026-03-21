@@ -1,0 +1,8 @@
+{
+  "name": "close_position_daily_range",
+  "description": "(2*Close - High - Low) / (High - Low). KSFT factor. No tunable params.",
+  "category": "daily",
+  "type": "close_position_daily_range",
+  "base_params": {},
+  "param_grid": {}
+}

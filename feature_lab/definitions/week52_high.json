@@ -1,0 +1,11 @@
+{
+  "name": "week52_high",
+  "description": "(Close - min_K) / (max_K - min_K). Distance from 52-week range. Grid search: lookback K.",
+  "category": "daily",
+  "type": "week52_high",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [30, 63, 126, 189, 252]
+  }
+}

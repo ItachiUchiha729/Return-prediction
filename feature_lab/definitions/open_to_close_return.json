@@ -1,0 +1,8 @@
+{
+  "name": "open_to_close_return",
+  "description": "(Close - Open) / Open. Intraday open-to-close return. No tunable params.",
+  "category": "daily",
+  "type": "open_to_close_return",
+  "base_params": {},
+  "param_grid": {}
+}

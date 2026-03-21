@@ -1,0 +1,10 @@
+{
+  "name": "raw_momentum",
+  "description": "Past K-day cumulative return (no vol scaling). Jegadeesh-Titman momentum. Grid search: lookback K.",
+  "category": "daily",
+  "type": "raw_momentum",
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 21, 42, 63, 126]
+  }
+}

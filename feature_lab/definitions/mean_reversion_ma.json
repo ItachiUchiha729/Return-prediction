@@ -1,0 +1,11 @@
+{
+  "name": "mean_reversion_ma",
+  "description": "CloseAdj / SMA(CloseAdj, K) - 1. Classic mean-reversion signal. Grid search: lookback K.",
+  "category": "daily",
+  "type": "mean_reversion_ma",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 20, 40, 60, 120]
+  }
+}

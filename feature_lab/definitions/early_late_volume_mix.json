@@ -1,0 +1,16 @@
+{
+  "name": "early_late_volume_mix",
+  "description": "Late vs early volume distribution. Grid search: split_time.",
+  "category": "intraday",
+  "type": "early_late_volume_mix",
+  "inputs": {
+    "cum_volume": "CumVolume"
+  },
+  "base_params": {
+    "start_time": "09:45",
+    "end_time": "15:30"
+  },
+  "param_grid": {
+    "split_time": ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"]
+  }
+}

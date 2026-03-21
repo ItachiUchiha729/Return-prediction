@@ -1,0 +1,8 @@
+{
+  "name": "volume_surge_ratio",
+  "description": "CumVol_15:30 * CloseAdj_T-1 / MDV_63_T-1.",
+  "category": "daily",
+  "type": "volume_surge_ratio",
+  "base_params": {},
+  "param_grid": {}
+}

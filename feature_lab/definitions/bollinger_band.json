@@ -1,0 +1,11 @@
+{
+  "name": "bollinger_band",
+  "description": "(CloseAdj - SMA(K)) / rolling_std(K). Bollinger band z-score. Grid search: lookback K.",
+  "category": "daily",
+  "type": "bollinger_band_position",
+  "sign": -1,
+  "base_params": {},
+  "param_grid": {
+    "K": [5, 10, 20, 40, 60, 120]
+  }
+}
