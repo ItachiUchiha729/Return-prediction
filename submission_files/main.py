@@ -203,8 +203,12 @@ def run_mode1(
     daily_dir = input_dir / "data_daily"
     if not intraday_dir.exists():
         intraday_dir = input_dir / "intraday"
+    if not intraday_dir.exists():
+        intraday_dir = input_dir / "intraday_data"
     if not daily_dir.exists():
         daily_dir = input_dir / "daily"
+    if not daily_dir.exists():
+        daily_dir = input_dir / "daily_data"
 
     if not intraday_dir.exists():
         raise FileNotFoundError(f"Intraday dir not found: {intraday_dir}")
