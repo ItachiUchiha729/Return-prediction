@@ -152,7 +152,7 @@ def run_mode2_predictions(
         # Set DatetimeIndex for cross-sectional rank norm groupby
         if "Date" in df_raw.columns:
             df_raw = df_raw.set_index(
-                pd.to_datetime(df_raw["Date"].astype(str), format="%Y%m%d")
+                pd.to_datetime(df_raw["Date"])
             )
         else:
             df_raw.index = pd.DatetimeIndex([date_ts] * len(df_raw))
@@ -165,7 +165,9 @@ def run_mode2_predictions(
 
         # ── Apply transformation pipeline ─────────────────────────────────
         df_norm = _transform_features(df_raw, clip_params, norm_params, feature_cols)
-        X = df_norm[feature_cols].values.astype(np.float32)
+        X = np.nan_to_num(
+            df_norm[feature_cols].values.astype(np.float32), nan=0.0
+        )
 
         # ── Per-model predictions ─────────────────────────────────────────
         p_ridge  = ridge.predict(X)
